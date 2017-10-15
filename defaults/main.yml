@@ -1,0 +1,9 @@
+---
+
+znc_ssl_cert_path: /etc/ssl/private/znc.pem
+znc_ssl_cert_content: NO CERTIFICATE
+znc_config_path: /etc/znc.conf
+
+znc_users: []
+
+# vi:sw=2:tabstop=2

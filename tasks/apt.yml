@@ -1,0 +1,7 @@
+---
+- name: Install ZNC
+  package:
+    name: znc
+    state: present
+
+# vi:sw=2:tabstop=2
