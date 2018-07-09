@@ -1,7 +1,24 @@
 ---
-- name: Create pem
+- name: "Create pem"
   copy:
     dest: "{{ znc_ssl_cert_path }}"
     content: "{{ znc_ssl_cert_content }}"
+
+- name: "Create cert dir"
+  file:
+    path: "/home/ajnasz/.znc/users/{{ item.key }}/moddata/cert/"
+    state: directory
+    owner: ajnasz
+    group: ajnasz
+    recurse: yes
+  with_dict: "{{ znc_passwords }}"
+  when: item.value.cert_pem is defined
+
+- name: "Create user pem"
+  copy:
+    dest: "/home/ajnasz/.znc/users/{{ item.key }}/moddata/cert/user.pem"
+    content: "{{ item.value.cert_pem }}"
+  with_dict: "{{ znc_passwords }}"
+  when: item.value.cert_pem is defined
 
 # vi:sw=2:tabstop=2
