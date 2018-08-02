@@ -1,8 +1,19 @@
 ---
 
+- name: "Create config dir"
+  file:
+    path: "{{ znc_config_path }}/configs"
+    state: "directory"
+    owner: "{{ znc_exec_user }}"
+    group: "{{ znc_exec_group }}"
+    mode: "0755"
+    recurse: "yes"
+
 - name: "Generate config"
   template:
     src: "znc.conf.j2"
-    dest: "{{ znc_config_path }}"
+    dest: "{{ znc_config_path }}/configs/znc.conf"
+    owner: "{{ znc_exec_user }}"
+    group: "{{ znc_exec_group }}"
 
 # vi:sw=2:tabstop=2

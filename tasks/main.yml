@@ -2,3 +2,5 @@
 - include: apt.yml
 - include: config.yml
 - include: pem.yml
+- include: service.yml
+

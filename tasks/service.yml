@@ -1,0 +1,13 @@
+- name: "Add znc service file"
+  copy:
+    src: "templates/znc.service"
+    dest: "/etc/systemd/system/"
+
+- name: "Enable znc service"
+  systemd:
+    daemon_reload: "yes"
+    name: "znc.service"
+    state: "started"
+    enabled: "yes"
+
+# vi:sw=2:tabstop=2:ft=yaml

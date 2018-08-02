@@ -40,7 +40,7 @@ TrustedProxy = 127.0.0.1
 	IPv6 = false
 	Port = 12001
 	SSL = false
-	URIPrefix = /znc
+	URIPrefix = /znc/
 </Listener>
 {% for user in znc_users -%}
 
@@ -66,9 +66,8 @@ TrustedProxy = 127.0.0.1
 	MaxNetworks = 1
 	MaxQueryBuffers = 50
 	MultiClients = true
-	Nick = ajnasz
 	PrependTimestamp = true
-	QuitMsg = ZNC - http://znc.in
+	QuitMsg = %znc%
 	RealName = {{ user.realname }}
 	Skin = _default_
 	TimestampFormat = [%H:%M:%S]
@@ -77,7 +76,7 @@ TrustedProxy = 127.0.0.1
 
 	<Network {{ network.name }}>
 		Encoding = ^UTF-8
-		FloodBurst = 4
+		FloodBurst = 2
 		FloodRate = 1.00
 		IRCConnectEnabled = true
 		JoinDelay = 0
@@ -90,13 +89,14 @@ TrustedProxy = 127.0.0.1
 
 {% if 'modules' in network %}
 {% for module in network.modules %}
-		LoadModule {{ module }}
+		LoadModule = {{ module }}
 {% endfor %}
 {% endif %}
 
 {% if 'chans' in network %}
 {% for chan in network.chans %}
-		<Chan {{ chan }}></Chan>
+		<Chan {{ chan }}>
+		</Chan>
 {% endfor %}
 {% endif %}
 
