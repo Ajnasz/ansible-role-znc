@@ -2,8 +2,8 @@
 
 znc_ssl_cert_content: NO CERTIFICATE
 
-znc_exec_user: 
-znc_exec_group: 
+znc_exec_user:
+znc_exec_group:
 
 znc_config_path: "/home/{{ znc_exec_user }}/.znc"
 znc_ssl_cert_path: "{{ znc_config_path }}/znc.pem"
