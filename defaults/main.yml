@@ -1,13 +1,48 @@
 ---
 
+znc_owner: znc
+znc_group: znc
+znc_ssl_cert_path: "/home/{{ znc_owner }}/.znc/znc.pem"
 znc_ssl_cert_content: NO CERTIFICATE
+znc_config_path: "/home/{{ znc_owner }}/.znc/configs/znc.conf"
 
-znc_exec_user:
-znc_exec_group:
+znc_owner: znc
+znc_group: znc
 
-znc_config_path: "/home/{{ znc_exec_user }}/.znc"
-znc_ssl_cert_path: "{{ znc_config_path }}/znc.pem"
+znc_users:
+  - name: ""
+    nick: ""
+    ident: ""
+    admin: true
+    realname: ""
+    networks:
+      # - name: bitlbee
+      #   server: "im.bitlbee.org 6667 {{ znc_passwords.userone.networks.bitlbee.password }}"
+      # - name: freenode
+      #   server: "irc.freenode.net +6697"
+      #   modules:
+      #     - nickserv
+      #     - simple_away
+      #     - cert
+      #     - sasl
+      #   chans:
+      #     - "#foo"
+      #     - "#bar"
+    passes:
+      # - hash: "{{znc_passwords.userone.hash}}"
+      #   method: "{{znc_passwords.userone.method}}"
+      #   salt: "{{znc_passwords.userone.salt}}"
 
 znc_users: []
+
+znc_passwords:
+#   userone:
+#     hash: ""
+#     method: "SHA256"
+#     salt: ""
+#     networks:
+#       bitlbee:
+#         password:
+
 
 # vi:sw=2:tabstop=2

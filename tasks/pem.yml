@@ -3,22 +3,35 @@
   copy:
     dest: "{{ znc_ssl_cert_path }}"
     content: "{{ znc_ssl_cert_content }}"
+- name: Debug
+  debug: 'msg="{{ znc_passwords[item.0.name] }}"'
+
+  with_subelements:
+    - "{{ znc_users }}"
+    - networks
 
 - name: "Create cert dir"
   file:
-    path: "/home/ajnasz/.znc/users/{{ item.key }}/moddata/cert/"
+    path: "/home/{{ znc_owner }}/.znc/users/{{ item.0.name }}/networks/{{ item.1.name }}/moddata/cert"
     state: directory
-    owner: ajnasz
-    group: ajnasz
+    owner: "{{ znc_owner }}"
+    group: "{{ znc_group }}"
     recurse: yes
-  with_dict: "{{ znc_passwords }}"
-  when: item.value.cert_pem is defined
+  with_subelements:
+    - "{{ znc_users }}"
+    - networks
+  when: znc_passwords[item.0.name].networks[item.1.name].cert_pem is defined
 
 - name: "Create user pem"
   copy:
-    dest: "/home/ajnasz/.znc/users/{{ item.key }}/moddata/cert/user.pem"
-    content: "{{ item.value.cert_pem }}"
-  with_dict: "{{ znc_passwords }}"
-  when: item.value.cert_pem is defined
+    dest: "/home/{{ znc_owner }}/.znc/users/{{ item.0.name }}/networks/{{ item.1.name }}/moddata/cert/user.pem"
+    content: "{{ znc_passwords[item.0.name].networks[item.1.name].cert_pem }}"
+    owner: "{{ znc_owner }}"
+    group: "{{ znc_group }}"
+    mode: '0600'
+  with_subelements:
+    - "{{ znc_users }}"
+    - networks
+  when: znc_passwords[item.0.name].networks[item.1.name].cert_pem is defined
 
 # vi:sw=2:tabstop=2
