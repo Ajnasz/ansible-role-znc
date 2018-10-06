@@ -1,0 +1,13 @@
+---
+
+- name: "Create znc group"
+  group:
+    name: "{{ znc_group }}"
+    state: "present"
+
+- name: "Create znc user"
+  user:
+    name: "{{ znc_owner }}"
+    group: "{{ znc_group }}"
+
+# vi:ts=2:sw=2:expandtab

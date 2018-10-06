@@ -1,6 +1,6 @@
 ---
 - include: apt.yml
+- include: user.yml
 - include: config.yml
 - include: pem.yml
 - include: service.yml
-
