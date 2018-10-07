@@ -3,12 +3,8 @@
   copy:
     dest: "{{ znc_ssl_cert_path }}"
     content: "{{ znc_ssl_cert_content }}"
-- name: Debug
-  debug: 'msg="{{ znc_passwords[item.0.name] }}"'
-
-  with_subelements:
-    - "{{ znc_users }}"
-    - networks
+  notify:
+    - "restart znc service"
 
 - name: "Create cert dir"
   file:
@@ -33,5 +29,7 @@
     - "{{ znc_users }}"
     - networks
   when: znc_passwords[item.0.name].networks[item.1.name].cert_pem is defined
+  notify:
+    - "restart znc service"
 
 # vi:sw=2:tabstop=2
