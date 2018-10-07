@@ -6,16 +6,13 @@ znc_ssl_cert_path: "/home/{{ znc_owner }}/.znc/znc.pem"
 znc_ssl_cert_content: NO CERTIFICATE
 znc_config_path: "/home/{{ znc_owner }}/.znc/configs/znc.conf"
 
-znc_owner: znc
-znc_group: znc
-
 znc_users:
   - name: ""
     nick: ""
     ident: ""
     admin: true
     realname: ""
-    networks:
+    networks: []
       # - name: bitlbee
       #   server: "im.bitlbee.org 6667 {{ znc_passwords.userone.networks.bitlbee.password }}"
       # - name: freenode
@@ -28,14 +25,12 @@ znc_users:
       #   chans:
       #     - "#foo"
       #     - "#bar"
-    passes:
+    passes: []
       # - hash: "{{znc_passwords.userone.hash}}"
       #   method: "{{znc_passwords.userone.method}}"
       #   salt: "{{znc_passwords.userone.salt}}"
 
-znc_users: []
-
-znc_passwords:
+znc_passwords: []
 #   userone:
 #     hash: ""
 #     method: "SHA256"
