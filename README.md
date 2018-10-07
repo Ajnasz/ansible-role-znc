@@ -41,11 +41,6 @@ znc_users:
         chans:
           - "#foo"
           - "#bar"
-
-    passes:
-      - hash: "{{znc_passwords.foo.hash}}"
-        method: "{{znc_passwords.foo.method}}"
-        salt: "{{znc_passwords.foo.salt}}"
 ```
 
 Into vault encrypted file:
@@ -61,6 +56,6 @@ znc_passwords:
 		cert_pem: |
 		  ...
 
-znc_ssl_cert_content: \
+znc_ssl_cert_content: |
  ...
 ```

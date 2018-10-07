@@ -103,15 +103,11 @@ TrustedProxy = 127.0.0.1
 
 	{% endfor -%}
 
-	{% for pass in user.passes -%}
-
 	<Pass password>
-		Hash = {{ pass.hash }}
-		Method = {{ pass.method }}
-		Salt = {{ pass.salt }}
+		Hash = {{ znc_passwords[user.name].hash }}
+		Method = {{ znc_passwords[user.name].method }}
+		Salt = {{ znc_passwords[user.name].salt }}
 	</Pass>
-
-	{%- endfor %}
 
 </User>
 

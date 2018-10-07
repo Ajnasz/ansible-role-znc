@@ -25,10 +25,6 @@ znc_users:
       #   chans:
       #     - "#foo"
       #     - "#bar"
-    passes: []
-      # - hash: "{{znc_passwords.userone.hash}}"
-      #   method: "{{znc_passwords.userone.method}}"
-      #   salt: "{{znc_passwords.userone.salt}}"
 
 znc_passwords: []
 #   userone:
